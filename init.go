@@ -16,11 +16,20 @@ func (p *Payment) Init(amount int) error {
 
 func (p *Payment) makeInit() error {
 	var err error
+	var payload []byte
 	var result bytes.Buffer
 	var req *http.Request
 	var resp *http.Response
 
-	req, err = makeRequest("/Init", "POST", nil, nil)
+	payload, err = json.Marshal(p)
+	if err != nil {
+		log.Println("[THEMAP]", "Cant marshal payload")
+		return ErrBadJSON
+	}
+
+	log.Println(string(payload), "====\n")
+
+	req, err = makeRequest("/Init", "POST", nil, payload)
 
 	resp, err = proceedRequest(req)
 	if err != nil {
