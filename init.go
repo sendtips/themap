@@ -3,6 +3,7 @@ package themap
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -41,5 +42,9 @@ func (p *Payment) makeInit() error {
 		return ErrBadJSON
 	}
 
-	return nil
+	if p.Reply.ErrCode != "" {
+		err = fmt.Errorf("[THEMAP] %w: %s\n", ErrReplyWithError, p.Reply.ErrCode)
+	}
+
+	return err
 }

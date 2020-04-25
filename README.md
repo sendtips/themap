@@ -15,15 +15,24 @@ Install by import `github.com/sendtips/themap` or via `go get github.com/sendtip
 To obtain a session you need call Init method.
 
 ```go
-import "github.com/sendtips/themap"
+package main
+
+import (
+	"fmt"
+	"github.com/sendtips/themap"
+)
 
 func main() {
-  p := themap.New()
-  p.SetAuthUser("login", "password")
-  err := p.Init(200) // Create session for 2.00RUB
-  if err != nil {
-    panic(err)
-  }
-  // p.Reply.SessionGUID will have a theMAP session identifier
+	p := themap.New("SendtipsTestTerminal", "SendtipsTestTerminal")
+	//p.SetAuthUser("login", "password")
+	p.SetMerch("SendtipsTestTerminal", "123")
+	//p.SetTerm("123")
+
+	err := p.Init(200) // Create session for 2.00RUB
+	if err != nil {
+		fmt.Printf("Error ocurred: %v", err)
+	}
+
+	fmt.Printf("%+v", p.Reply.SessionGUID) // Will have a theMAP session identifier
 }
 ```

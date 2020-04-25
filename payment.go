@@ -34,7 +34,7 @@ type Reply struct {
 }
 
 func New(key, merchid string) *Payment {
-	return &Payment{Key: key, MerchantID: merchid, Type: "Pay", PaymentType: "OneStep"}
+	return &Payment{Key: key, MerchantID: merchid, Type: "Pay", Lifetime: 10000, PaymentType: "OneStep"}
 }
 
 func (p *Payment) SetAuthUser(login, passwd string) {
