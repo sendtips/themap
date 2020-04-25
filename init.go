@@ -9,9 +9,7 @@ import (
 )
 
 func (p *Payment) Init(amount int) error {
-
 	p.Amount = amount
-
 	return p.makeInit()
 }
 

@@ -1,4 +1,4 @@
-module githib.com/sendtips/themap
+module github.com/sendtips/themap
 
 go 1.13
 
