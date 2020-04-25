@@ -27,8 +27,6 @@ func (p *Payment) makeInit() error {
 		return ErrBadJSON
 	}
 
-	log.Println(string(payload), "====\n")
-
 	req, err = makeRequest("/Init", "POST", nil, payload)
 
 	resp, err = proceedRequest(req)
