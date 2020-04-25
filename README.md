@@ -23,16 +23,16 @@ import (
 )
 
 func main() {
-	p := themap.New("SendtipsTestTerminal", "SendtipsTestTerminal")
-	//p.SetAuthUser("login", "password")
-	p.SetMerch("SendtipsTestTerminal", "123")
-	//p.SetTerm("123")
+	p := themap.New("SendtipsTestTerminal", "OrderID1")
+	p.SetAuthUser("", "")
+	p.SetMerch("", "")
+	p.SetTerm("123")
 
-	err := p.Init(200) // Create session for 2.00RUB
+	err := p.Init(20000) // Create session for 2.00RUB
 	if err != nil {
-		fmt.Printf("Error ocurred: %v", err)
+		fmt.Printf("Error ocurred: %v %+v", err, p)
 	}
 
-	fmt.Printf("%+v", p.Reply.SessionGUID) // Will have a theMAP session identifier
+	fmt.Printf("%v", p.Reply.SessionGUID) // Will have a theMAP session identifier
 }
 ```

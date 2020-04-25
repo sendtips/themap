@@ -16,8 +16,16 @@ func TestNew(t *testing.T) {
 }
 
 func ExampleNew() {
-	trans := New("some", "123")
-	trans.SetAuthUser("user_login", "pass123")
-	fmt.Printf("%+v", trans.Credential.Login)
-	// Output: user_login
+	p := New("SendtipsTestTerminal", "OrderID1")
+	// p.SetAuthUser("", "")
+	// p.SetMerch("", "")
+	p.SetTerm("123")
+
+	err := p.Init(300) // Create session for 3.00RUB
+	if err != nil {
+		fmt.Printf("Error ocurred: %v", err)
+	}
+
+	fmt.Printf("%v", p.Reply.Success) // Will have a theMAP session identifier
+	// Output: true
 }
