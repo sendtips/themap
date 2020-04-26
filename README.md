@@ -12,7 +12,7 @@ A Go library to work with [TheMAP](https://doc.mapcard.pro/).
 Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`
 
 ## Example
-To obtain a session you need call Init method.
+To obtain a session you need call `Init()` method.
 
 ```go
 package main
@@ -23,16 +23,14 @@ import (
 )
 
 func main() {
-	p := themap.New("SendtipsTestTerminal", "OrderID1")
-	p.SetAuthUser("", "")
-	p.SetMerch("", "")
+	p := themap.New("TestTerminal", "TestOrder123")
 	p.SetTerm("123")
 
-	err := p.Init(20000) // Create session for 2.00RUB
+	err := p.Init(300) // Create session for 3.00RUB
 	if err != nil {
-		fmt.Printf("Error ocurred: %v %+v", err, p)
+		fmt.Printf("Error ocurred: %v", err)
 	}
 
-	fmt.Printf("%v", p.Reply.SessionGUID) // Will have a theMAP session identifier
+	fmt.Printf("%s", p.Reply.SessionGUID) // Will have a theMAP session identifier
 }
 ```

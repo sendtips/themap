@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+// Init obtain session token from TheMAP payment gateway
 func (p *Payment) Init(amount int) error {
 	p.Amount = amount
 	return p.makeInit()

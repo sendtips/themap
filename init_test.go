@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -36,8 +37,19 @@ func TestInit(t *testing.T) {
 		t.Error("Error occurred", err.Error())
 	}
 
-	// if ident.User.PayerID != "WDJJHEBZ4X2LY" {
-	//     t.Error("Wrong payer id", ident.User.PayerID)
-	// }
+}
 
+// The Init method obtain session token
+// from TheMAP payment gateway
+func ExampleInit() {
+	p := New("SendtipsTestTerminal", "TestOrder123")
+	p.SetTerm("123")
+
+	err := p.Init(300) // Create session for 3.00RUB
+	if err != nil {
+		fmt.Printf("Error ocurred: %v", err)
+	}
+
+	fmt.Printf("%v", p.Reply.Success) // Will have a theMAP reply success flag
+	// Output: true
 }

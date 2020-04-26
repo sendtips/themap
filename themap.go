@@ -1,5 +1,6 @@
 package themap
 
+// Payment holds query to initialize payment session
 type Payment struct {
 	Key             string     `json:"key"`
 	MerchantID      string     `json:"merchant_order_id"`
@@ -16,6 +17,7 @@ type Payment struct {
 	Reply           Reply
 }
 
+// Credential holds auth credentials
 type Credential struct {
 	Login            string `json:"login"`
 	Password         string `json:"password"`
@@ -24,6 +26,7 @@ type Credential struct {
 	TerminalPassword string `json:"terminal_password"`
 }
 
+// Reply carriers reply from gateway
 type Reply struct {
 	Success      bool   `json:"Success"`
 	ReplyOrderID string `json:"OrderId"`
@@ -33,20 +36,24 @@ type Reply struct {
 	SessionGUID  string `json:"SessionGUID"`
 }
 
+// New constructs new query to initialize payment session
 func New(key, merchid string) *Payment {
 	return &Payment{Key: key, MerchantID: merchid, Type: "pay", Lifetime: 10000, PaymentType: "OneStep"}
 }
 
+// SetAuthUser sets user credentials
 func (p *Payment) SetAuthUser(login, passwd string) {
 	p.Credential.Login = login
 	p.Credential.Password = passwd
 }
 
+// SetMerch sets Merchant credentials
 func (p *Payment) SetMerch(name, passwd string) {
 	p.Credential.MerchantName = name
 	p.Credential.MerchantPassword = passwd
 }
 
+// SetTerm sets Terminal password
 func (p *Payment) SetTerm(passwd string) {
 	p.Credential.TerminalPassword = passwd
 }
