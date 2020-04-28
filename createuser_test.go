@@ -15,7 +15,7 @@ func TestCreateUser(t *testing.T) {
     "ErrCode": ""
 }`
 
-	reply_err := `{
+	replyErr := `{
         "Success": false,
         "UserId": 11,
         "AlreadyCreated": true,
@@ -43,14 +43,14 @@ func TestCreateUser(t *testing.T) {
 	}
 
 	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/createUser",
-		httpmock.NewStringResponder(200, reply_err))
+		httpmock.NewStringResponder(200, replyErr))
 
-	trans_err := New("123", "123")
-	trans_err.SetAuthUser("login", "123")
-	trans_err.SetTerm("123")
-	err2 := trans_err.CreateUser("123.123.123.123", "18005000000", "username@example.com")
+	transErr := New("123", "123")
+	transErr.SetAuthUser("login", "123")
+	transErr.SetTerm("123")
+	err2 := transErr.CreateUser("123.123.123.123", "18005000000", "username@example.com")
 
-	if trans_err.AlreadyCreated != true {
+	if transErr.AlreadyCreated != true {
 		t.Error("User alredy creaded flag is wrong")
 	}
 

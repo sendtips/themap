@@ -62,7 +62,7 @@ type Card struct {
 	Holder string `json:"holder,omitempty"`
 }
 
-// Card represents card at TheMAP
+// User represents user at TheMAP
 type User struct {
 	// Remote IP  address
 	IP string `json:"ip"`

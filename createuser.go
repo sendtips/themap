@@ -4,9 +4,7 @@ import (
 	"fmt"
 )
 
-// Payout makes payout to card
-// card parameter is a cardno or shadow card representation
-// second paramenter is pan flag, if true we treat first prameter as actual card number
+// CreateUser registers a user at theMAP
 func (p *Payment) CreateUser(ip, phone, email string) error {
 
 	var err error
