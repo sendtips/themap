@@ -5,7 +5,7 @@ import (
 )
 
 // StoreCard adds card
-func (p *Payment) StoreCard(card string, month, year int, cvv, holder string) error {
+func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
 
 	var err error
 

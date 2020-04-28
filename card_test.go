@@ -25,7 +25,7 @@ func TestAddCard(t *testing.T) {
 	trans := New("123", "123")
 	trans.SetAuthUser("login", "123")
 	trans.SetTerm("123")
-	err := trans.StoreCard("4300000000000777", 12, 21, "123", "Ivan Ivanov")
+	err := trans.StoreCard("4300000000000777", "123", "Ivan Ivanov", 12, 21)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -51,7 +51,7 @@ func TestAddCard(t *testing.T) {
 	trans_err := New("123", "123")
 	trans_err.SetAuthUser("login", "")
 	trans_err.SetTerm("123")
-	err2 := trans.StoreCard("4300000000000777", 12, 21, "123", "Ivan Ivanov")
+	err2 := trans.StoreCard("4300000000000777", "123", "Ivan Ivanov", 12, 21)
 
 	if trans_err.Success != false {
 		t.Error("Successfully added bad card")

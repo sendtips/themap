@@ -16,7 +16,7 @@ func (p *Payment) Init(amount int) error {
 	}
 
 	if p.Reply.ErrCode != "" {
-		err = fmt.Errorf("[THEMAP] %w: %s\n", ErrReplyWithError, p.Reply.ErrCode)
+		err = fmt.Errorf("[THEMAP] %w: %s (%s)\n", ErrReplyWithError, p.Reply.ErrCode, p.Reply.ErrMessage)
 	}
 
 	return err

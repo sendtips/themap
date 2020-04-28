@@ -16,11 +16,6 @@ func TestPayout(t *testing.T) {
   "BankName": "TestBank"
 }`
 
-	//     reply_err := `{
-	//     "Success": false,
-	//     "ErrCode": "INVALID_AUTHENTICATION"
-	// }`
-
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -28,7 +23,6 @@ func TestPayout(t *testing.T) {
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
-	//trans.SetAuthUser("login", "123")
 	trans.SetTerm("123")
 	err := trans.Payout("123CARDSHADOW", false)
 

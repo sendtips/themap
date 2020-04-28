@@ -34,6 +34,7 @@ type Reply struct {
 	Success        bool   `json:"Success"`
 	ReplyOrderID   string `json:"OrderId"`
 	ReplyAmount    int    `json:"Amount"`
+	ErrMessage     string `json:"ErrMessage"`
 	ErrCode        string `json:"ErrCode"`
 	ReplyType      string `json:"Type"`
 	SessionGUID    string `json:"SessionGUID,omitempty"`
