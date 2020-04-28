@@ -63,6 +63,10 @@ func proceedRequest(method, link string, p *Payment) error {
 	}
 
 	req, err = newRequest(method, link, nil, payload)
+	if err != nil {
+		return err
+	}
+
 	resp, err = doRequest(req)
 	if err != nil {
 		return err
@@ -75,6 +79,9 @@ func proceedRequest(method, link string, p *Payment) error {
 	}
 
 	_, err = io.Copy(&result, resp.Body)
+	if err != nil {
+		return err
+	}
 
 	err = json.Unmarshal(result.Bytes(), &p)
 	if err != nil {
