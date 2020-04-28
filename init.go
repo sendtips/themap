@@ -6,14 +6,11 @@ import (
 
 // Init obtain session token from TheMAP payment gateway
 func (p *Payment) Init(amount int) error {
-	p.Amount = amount
-	return p.Send("/Init")
-}
-
-func (p *Payment) Send(link string) error {
 	var err error
 
-	err = proceedRequest("POST", link, p)
+	p.Amount = amount
+
+	err = proceedRequest("POST", "/Init", p)
 	if err != nil {
 		return err
 	}
@@ -23,4 +20,5 @@ func (p *Payment) Send(link string) error {
 	}
 
 	return err
+
 }
