@@ -40,6 +40,9 @@ type Reply struct {
 	BankName       string `json:"BankName,omitempty"`
 	UserID         int    `json:"UserId,omitempty"`
 	AlreadyCreated bool   `json:"AlreadyCreated,omitempty"`
+	CardUID        string `json:"CardUId,omitempty"`
+	PANMask        string `json:"PANMask,omitempty"`
+	CardActive     bool   `json:"IsActive,omitempty"`
 }
 
 // Card represents card at TheMAP
@@ -48,6 +51,14 @@ type Card struct {
 	PAN string `json:"pan,omitempty"`
 	// Card identifier
 	UID string `json:"uid,omitempty"`
+	//  Month expirity of the card
+	Month int `json:"emonth,omitempty"`
+	// Year expirity of the card
+	Year int `json:"eyear,omitempty"`
+	// CVV card code
+	CVV string `json:"cvv,omitempty"`
+	// Card holder name
+	Holder string `json:"holder,omitempty"`
 }
 
 // Card represents card at TheMAP
