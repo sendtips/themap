@@ -1,5 +1,9 @@
 package themap
 
+import (
+	"fmt"
+)
+
 // Payment holds query to initialize payment session
 type Payment struct {
 	Key             string     `json:"key"`
