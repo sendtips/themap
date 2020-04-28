@@ -42,7 +42,7 @@ func ExampleInit() {
 
 	err := pay.Init(300) // Create session for 3.00RUB
 	if err != nil {
-		fmt.Printf("Error ocurred: %v", err)
+		fmt.Printf("Error occurred: %v", err)
 	}
 
 	fmt.Printf("%v", pay.Success) // Will have a theMAP reply success flag
