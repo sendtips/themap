@@ -14,7 +14,7 @@ type Payment struct {
 	CardUID         string     `json:"card_uid"`
 	Action          string     `json:"action"`
 	Recurrent       bool       `json:"recurrent"`
-	Reply           Reply
+	Reply
 }
 
 // Credential holds auth credentials
@@ -28,12 +28,20 @@ type Credential struct {
 
 // Reply carriers reply from gateway
 type Reply struct {
-	Success      bool   `json:"Success"`
-	ReplyOrderID string `json:"OrderId"`
-	ReplyAmount  int    `json:"Amount"`
-	ErrCode      string `json:"ErrCode"`
-	ReplyType    string `json:"Type"`
-	SessionGUID  string `json:"SessionGUID"`
+	Success      bool   `json:"Success,omitempty"`
+	ReplyOrderID string `json:"OrderId,omitempty"`
+	ReplyAmount  int    `json:"Amount,omitempty"`
+	ErrCode      string `json:"ErrCode,omitempty"`
+	ReplyType    string `json:"Type,omitempty"`
+	SessionGUID  string `json:"SessionGUID,omitempty"`
+}
+
+// Card represents card at TheMAP
+type Card struct {
+	// Card number
+	PAN string `json:"pan"`
+	// Card identifier
+	UID string `json:"uid"`
 }
 
 // New constructs new query to initialize payment session

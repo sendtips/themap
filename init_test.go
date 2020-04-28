@@ -42,14 +42,14 @@ func TestInit(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway
 func ExampleInit() {
-	p := New("SendtipsTestTerminal", "TestOrder123")
-	p.SetTerm("123")
+	pay := New("SendtipsTestTerminal", "TestOrder123")
+	pay.SetTerm("123")
 
-	err := p.Init(300) // Create session for 3.00RUB
+	err := pay.Init(300) // Create session for 3.00RUB
 	if err != nil {
 		fmt.Printf("Error ocurred: %v", err)
 	}
 
-	fmt.Printf("%v", p.Reply.Success) // Will have a theMAP reply success flag
+	fmt.Printf("%v", pay.Success) // Will have a theMAP reply success flag
 	// Output: true
 }

@@ -23,14 +23,14 @@ import (
 )
 
 func main() {
-	p := themap.New("TestTerminal", "TestOrder123")
-	p.SetTerm("123")
+	pay := themap.New("TestTerminal", "TestOrder123")
+	pay.SetTerm("123")
 
-	err := p.Init(300) // Create session for 3.00RUB
+	err := pay.Init(300) // Create session for 3.00RUB
 	if err != nil {
 		fmt.Printf("Error ocurred: %v", err)
 	}
 
-	fmt.Printf("%s", p.Reply.SessionGUID) // Will have a theMAP session identifier
+	fmt.Printf("%s", pay.SessionGUID) // Will have a theMAP session identifier
 }
 ```
