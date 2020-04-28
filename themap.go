@@ -31,12 +31,12 @@ type Credential struct {
 
 // Reply carriers reply from gateway
 type Reply struct {
-	Success        bool   `json:"Success"`
-	ReplyOrderID   string `json:"OrderId"`
-	ReplyAmount    int    `json:"Amount"`
-	ErrMessage     string `json:"ErrMessage"`
-	ErrCode        string `json:"ErrCode"`
-	ReplyType      string `json:"Type"`
+	Success        bool   `json:"Success,omitempty"`
+	ReplyOrderID   string `json:"OrderId,omitempty"`
+	ReplyAmount    int    `json:"Amount,omitempty"`
+	ErrMessage     string `json:"ErrMessage,omitempty"`
+	ErrCode        string `json:"ErrCode,omitempty"`
+	ReplyType      string `json:"Type,omitempty"`
 	SessionGUID    string `json:"SessionGUID,omitempty"`
 	BankName       string `json:"BankName,omitempty"`
 	UserID         int    `json:"UserId,omitempty"`
