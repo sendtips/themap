@@ -18,11 +18,6 @@ func TestInit(t *testing.T) {
     "SessionGUID": "1ILZMU42Zs8YivEsYXOA67ijRYs"
 }`
 
-	// reply_err := `{
-	//         "Success": false,
-	//         "ErrCode": "WRONG_PARAMS"
-	//     }`
-
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
@@ -30,7 +25,7 @@ func TestInit(t *testing.T) {
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
-	trans.SetAuthUser("login", "123")
+	trans.SetTerm("123")
 	err := trans.Init(200)
 
 	if err != nil {

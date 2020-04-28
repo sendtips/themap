@@ -9,11 +9,6 @@ import (
 	"net/http"
 )
 
-// Sender inteface makes actual request to payment gateway
-type Sender interface {
-	Send(string) error
-}
-
 var (
 	// ErrBadJSON error throws when JSON marshal/unmarshal problem occurs
 	ErrBadJSON = errors.New("Bad reply payload")
@@ -54,7 +49,7 @@ func doRequest(req *http.Request) (*http.Response, error) {
 
 // proceedRequest deal with data prep and preceedRequest
 // handle response and pack all data back to our structure
-func proceedRequest(method, link string, p Sender) error {
+func proceedRequest(method, link string, p *Payment) error {
 	var err error
 	var payload []byte
 	var result bytes.Buffer
