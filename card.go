@@ -1,9 +1,5 @@
 package themap
 
-import (
-	"fmt"
-)
-
 // StoreCard adds card
 func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
 
@@ -16,9 +12,7 @@ func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
 		return err
 	}
 
-	if p.Reply.ErrCode != "" {
-		err = fmt.Errorf("[THEMAP] %w: %s\n", ErrReplyWithError, p.Reply.ErrCode)
-	}
+	err = p.checkErrors()
 
 	return err
 
@@ -36,9 +30,7 @@ func (p *Payment) DeleteCard(card string) error {
 		return err
 	}
 
-	if p.Reply.ErrCode != "" {
-		err = fmt.Errorf("[THEMAP] %w: %s\n", ErrReplyWithError, p.Reply.ErrCode)
-	}
+	err = p.checkErrors()
 
 	return err
 

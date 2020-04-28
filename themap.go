@@ -93,3 +93,13 @@ func (p *Payment) SetMerch(name, passwd string) {
 func (p *Payment) SetTerm(passwd string) {
 	p.Credential.TerminalPassword = passwd
 }
+
+// checkErrors checks if errors is presented in reply
+func (p *Payment) checkErrors() error {
+	var err error
+	if p.Reply.ErrCode != "" {
+		err = fmt.Errorf("[THEMAP] %w: %s (%s)\n", ErrReplyWithError, p.Reply.ErrCode, p.Reply.ErrMessage)
+	}
+
+	return err
+}

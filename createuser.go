@@ -1,9 +1,5 @@
 package themap
 
-import (
-	"fmt"
-)
-
 // CreateUser registers a user at theMAP
 func (p *Payment) CreateUser(ip, phone, email string) error {
 
@@ -16,9 +12,7 @@ func (p *Payment) CreateUser(ip, phone, email string) error {
 		return err
 	}
 
-	if p.Reply.ErrCode != "" {
-		err = fmt.Errorf("[THEMAP] %w: %s\n", ErrReplyWithError, p.Reply.ErrCode)
-	}
+	err = p.checkErrors()
 
 	return err
 
