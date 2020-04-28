@@ -12,7 +12,7 @@ import (
 var (
 	// ErrBadJSON error throws when JSON marshal/unmarshal problem occurs
 	ErrBadJSON = errors.New("Bad reply payload")
-	// ErrBadStatusReply is bad gateway stratus code
+	// ErrBadStatusReply is bad gateway status code
 	ErrBadStatusReply = errors.New("Bad status reply")
 	// ErrReplyWithError business-logic error
 	ErrReplyWithError = errors.New("Error in reply")
