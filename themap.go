@@ -14,6 +14,9 @@ type Payment struct {
 	CardUID         string     `json:"card_uid"`
 	Action          string     `json:"action"`
 	Recurrent       bool       `json:"recurrent"`
+	Card            Card       `json:"card,omitempty"`
+	User
+
 	Reply
 }
 
@@ -28,20 +31,33 @@ type Credential struct {
 
 // Reply carriers reply from gateway
 type Reply struct {
-	Success      bool   `json:"Success,omitempty"`
-	ReplyOrderID string `json:"OrderId,omitempty"`
-	ReplyAmount  int    `json:"Amount,omitempty"`
-	ErrCode      string `json:"ErrCode,omitempty"`
-	ReplyType    string `json:"Type,omitempty"`
-	SessionGUID  string `json:"SessionGUID,omitempty"`
+	Success        bool   `json:"Success"`
+	ReplyOrderID   string `json:"OrderId"`
+	ReplyAmount    int    `json:"Amount"`
+	ErrCode        string `json:"ErrCode"`
+	ReplyType      string `json:"Type"`
+	SessionGUID    string `json:"SessionGUID,omitempty"`
+	BankName       string `json:"BankName,omitempty"`
+	UserID         int    `json:"UserId,omitempty"`
+	AlreadyCreated bool   `json:"AlreadyCreated,omitempty"`
 }
 
 // Card represents card at TheMAP
 type Card struct {
 	// Card number
-	PAN string `json:"pan"`
+	PAN string `json:"pan,omitempty"`
 	// Card identifier
-	UID string `json:"uid"`
+	UID string `json:"uid,omitempty"`
+}
+
+// Card represents card at TheMAP
+type User struct {
+	// Remote IP  address
+	IP string `json:"ip"`
+	// User phone number
+	Phone string `json:"phone"`
+	// User email address
+	Email string `json:"email"`
 }
 
 // New constructs new query to initialize payment session

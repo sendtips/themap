@@ -9,9 +9,9 @@ import (
 	"net/http"
 )
 
-// Requester makes request to theMAP
+// Sender inteface makes actual request to payment gateway
 type Sender interface {
-	Send() error
+	Send(string) error
 }
 
 var (
