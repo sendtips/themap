@@ -155,7 +155,7 @@ func TestDeleteCard(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway for card manage
 func ExampleAddCardSession() {
-	pay := New("SendtipsTestTerminal", "TestOrder123")
+	pay := New("SendtipsTestTerminal", "CardAdd1")
 	pay.SetAuthUser("login", "password123")
 	pay.SetTerm("123")
 

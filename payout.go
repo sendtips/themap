@@ -3,11 +3,11 @@ package themap
 // Payout makes payout to card
 // card parameter is a cardno or shadow card representation
 // second paramenter is pan flag, if true we treat first prameter as actual card number
-func (p *Payment) Payout(card string, pan bool) error {
+func (p *Payment) Payout(card string, ispan bool) error {
 
 	var err error
 
-	if pan {
+	if ispan {
 		p.Card = Card{PAN: card}
 	} else {
 		p.Card = Card{UID: card}
