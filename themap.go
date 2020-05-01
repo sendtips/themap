@@ -1,3 +1,4 @@
+// A Go library to work with TheMAP payment gateway.
 package themap
 
 import (

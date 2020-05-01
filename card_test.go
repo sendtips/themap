@@ -1,12 +1,47 @@
 package themap
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
 )
 
-func TestAddCard(t *testing.T) {
+func TestAddCardSession(t *testing.T) {
+
+	reply := `{
+    "Success": true,
+    "OrderId": "TestOrder123",
+    "Amount": 300,
+    "ErrCode": "",
+    "Type": "add",
+    "SessionGUID": "1ILZMU42Zs8YivEsYXOA67ijRYs"
+}`
+
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/Init",
+		httpmock.NewStringResponder(200, reply))
+
+	trans := New("123", "123")
+	trans.SetTerm("123")
+	err := trans.AddCardSession()
+
+	if err != nil {
+		t.Error("Error occurred", err.Error())
+	}
+
+	if trans.Type != "add" {
+		t.Error("Wrong session type:", trans.Type)
+	}
+
+	// if trans.CardUID == "" {
+	//     t.Error("Empty card UID")
+	// }
+}
+
+func TestStoreCard(t *testing.T) {
 
 	reply := `{
     "Success": true,
@@ -111,4 +146,20 @@ func TestDeleteCard(t *testing.T) {
 		t.Error("Error not returned")
 	}
 
+}
+
+// The Init method obtain session token
+// from TheMAP payment gateway for card manage
+func ExampleAddCardSession() {
+	pay := New("SendtipsTestTerminal", "TestOrder123")
+	pay.SetAuthUser("login", "password123")
+	pay.SetTerm("123")
+
+	err := pay.AddCardSession() // Create add_card session
+	if err != nil {
+		fmt.Printf("Error occurred: %v", err)
+	}
+
+	fmt.Printf("%v", pay.Success) // Will have a theMAP reply success flag
+	// Output: true
 }

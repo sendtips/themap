@@ -1,5 +1,24 @@
 package themap
 
+// AddCardSession makes session request to store user card
+func (p *Payment) AddCardSession() error {
+
+	var err error
+
+	p.Amount = 1
+	p.Type = "add"
+
+	err = proceedRequest("POST", "/Init", p)
+	if err != nil {
+		return err
+	}
+
+	err = p.checkErrors()
+
+	return err
+
+}
+
 // StoreCard adds card
 func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
 

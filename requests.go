@@ -12,23 +12,25 @@ import (
 var (
 	// ErrBadJSON error throws when JSON marshal/unmarshal problem occurs
 	ErrBadJSON = errors.New("Bad reply payload")
+
 	// ErrBadStatusReply is bad gateway status code
 	ErrBadStatusReply = errors.New("Bad status reply")
+
 	// ErrReplyWithError business-logic error
 	ErrReplyWithError = errors.New("Error in reply")
 )
 
-const apilink string = "https://api-stage.mapisacard.com" // no trailing slash
+// APILink sets payment gateway domain
+const APILink string = "https://api-stage.mapisacard.com" // no trailing slash
 
-// newRequest creates new http request
-// link is a url
-// method HTTP method
-// headers can contain additional headers
-// payload is a body of HTTP request
-func newRequest(method, link string, headers map[string]string, payload []byte) (*http.Request, error) {
+// newRequest creates new http request.
+// The params is path is a url part
+// HTTP method, then map[string]string with additional headers
+// and a body of request
+func newRequest(method, path string, headers map[string]string, payload []byte) (*http.Request, error) {
 
-	req, err := http.NewRequest(method, apilink+link, bytes.NewBuffer(payload))
-	req.Header.Set("User-Agent", "Sendtips/"+clientversion)
+	req, err := http.NewRequest(method, APILink+path, bytes.NewBuffer(payload))
+	req.Header.Set("User-Agent", "Sendtips/"+Version)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Additional HTTP headers
@@ -49,7 +51,7 @@ func doRequest(req *http.Request) (*http.Response, error) {
 
 // proceedRequest deal with data prep and preceedRequest
 // handle response and pack all data back to our structure
-func proceedRequest(method, link string, p *Payment) error {
+func proceedRequest(method, path string, p *Payment) error {
 	var err error
 	var payload []byte
 	var result bytes.Buffer
@@ -62,7 +64,7 @@ func proceedRequest(method, link string, p *Payment) error {
 		return ErrBadJSON
 	}
 
-	req, err = newRequest(method, link, nil, payload)
+	req, err = newRequest(method, path, nil, payload)
 	if err != nil {
 		return err
 	}
