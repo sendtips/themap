@@ -7,6 +7,7 @@ func (p *Payment) AddCardSession() error {
 
 	p.Amount = 1
 	p.Type = "add"
+	p.AddCard = true
 
 	err = proceedRequest("POST", "/Init", p)
 	if err != nil {

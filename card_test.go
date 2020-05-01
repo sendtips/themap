@@ -36,6 +36,10 @@ func TestAddCardSession(t *testing.T) {
 		t.Error("Wrong session type:", trans.Type)
 	}
 
+	if trans.AddCard == false {
+		t.Error("AddCard flag is false")
+	}
+
 	// if trans.CardUID == "" {
 	//     t.Error("Empty card UID")
 	// }
