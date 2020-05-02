@@ -21,7 +21,7 @@ var (
 )
 
 // APILink sets payment gateway domain
-const APILink string = "https://api-stage.mapisacard.com" // no trailing slash
+var APILink string = "https://api-stage.mapisacard.com" // no trailing slash
 
 // newRequest creates new http request.
 // The params is path is a url part
