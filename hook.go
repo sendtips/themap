@@ -27,7 +27,7 @@ type Notify struct {
 	BankName         string
 	ErrCode          string
 	State            string
-	Notification     string
+	Type             string
 	CardUID          string
 	CustomParams     string
 	FeePercent       float32
@@ -47,7 +47,7 @@ func NewNotify(b []byte) (*Notify, error) {
 
 	notify := &Notify{MerchantContract: p.Get("MerchantContract"), OriginalOrderId: p.Get("OriginalOrderId"), MerchantOrderId: p.Get("MerchantOrderId"),
 		AuthCode: p.Get("AuthCode"), RRN: p.Get("RRN"), CardNumber: p.Get("CardNumber"), BankName: p.Get("BankName"), ErrCode: p.Get("ErrCode"),
-		State: p.Get("State"), Notification: p.Get("Notification"), CardUID: p.Get("CardUId"), CustomParams: p.Get("CustomParams"), Signature: p.Get("Signature")}
+		State: p.Get("State"), Type: p.Get("Notification"), CardUID: p.Get("CardUId"), CustomParams: p.Get("CustomParams"), Signature: p.Get("Signature")}
 
 	if p.Get("Amount") != "" {
 		notify.Amount, err = strconv.Atoi(p.Get("Amount"))
