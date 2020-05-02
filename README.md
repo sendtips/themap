@@ -31,6 +31,6 @@ func main() {
 		fmt.Printf("Error occurred: %v", err)
 	}
 
-	fmt.Printf("%s", pay.SessionGUID) // Will have a theMAP session identifier
+	fmt.Printf("%s", pay.SessionGUID) // TheMAP session identifier
 }
 ```

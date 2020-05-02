@@ -45,6 +45,6 @@ func ExampleInit() {
 		fmt.Printf("Error occurred: %v", err)
 	}
 
-	fmt.Printf("%v", pay.Success) // Will have a theMAP reply success flag
+	fmt.Printf("%v", pay.Success)
 	// Output: true
 }
