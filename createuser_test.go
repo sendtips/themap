@@ -42,6 +42,10 @@ func TestCreateUser(t *testing.T) {
 		t.Error("User alredy creaded flag is wrong")
 	}
 
+	if trans.UserID != 11 {
+		t.Error("Empty MAP user id")
+	}
+
 	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/createUser",
 		httpmock.NewStringResponder(200, replyErr))
 
