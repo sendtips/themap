@@ -1,4 +1,4 @@
 package themap
 
-// Package version string
+// Version string
 const Version string = "0.5"
