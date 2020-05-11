@@ -20,7 +20,7 @@ func TestHook(t *testing.T) {
 
 	for _, test := range tests {
 
-		notify, err := NewNotify(test.payload)
+		notify, err := NewNotify(test.payload, "")
 		if err != nil {
 			t.Error("Error occurred: ", err.Error())
 		}

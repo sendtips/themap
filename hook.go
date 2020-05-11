@@ -36,7 +36,7 @@ type Notify struct {
 }
 
 // NewNotify returns Notify data from bytes
-func NewNotify(b []byte) (*Notify, error) {
+func NewNotify(b []byte, signkey string) (*Notify, error) {
 
 	var err error
 
@@ -75,6 +75,14 @@ func NewNotify(b []byte) (*Notify, error) {
 		notify.TerminalID, err = strconv.Atoi(p.Get("TerminalID"))
 		if err != nil {
 			notify.TerminalID = 0
+		}
+	}
+
+	// Check signature
+	if notify.Signature != "" {
+		sig := NewSignature(signkey, notify.Signature)
+		if !sig.Verify(string(b)) {
+			err = ErrBadSignature
 		}
 	}
 

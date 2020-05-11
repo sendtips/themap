@@ -18,6 +18,9 @@ var (
 
 	// ErrReplyWithError business-logic error
 	ErrReplyWithError = errors.New("Error in reply")
+
+	// ErrBadSignature wrong signature error
+	ErrBadSignature = errors.New("Wrong signature")
 )
 
 // APILink sets payment gateway domain
