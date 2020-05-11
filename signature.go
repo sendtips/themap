@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Signature calculates checksum
 type Signature struct {
 	Key, Message []byte
 	Hash         string
@@ -34,6 +35,7 @@ func (s *Signature) sign() bool {
 	return false
 }
 
+// Verify HMAC-SHA256 signature hash used in Notify type
 func (s *Signature) Verify(p string) bool {
 
 	var keys []string

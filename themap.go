@@ -1,4 +1,4 @@
-// A Go library to work with TheMAP payment gateway.
+// Package themap implements client library to work with TheMAP payment gateway.
 package themap
 
 import (
