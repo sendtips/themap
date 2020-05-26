@@ -25,4 +25,10 @@ jobs:
         fi
 
     - name: Run tests
-      run: go test -v .
+      run: go test -race -coverprofile=coverage.txt -covermode=atomic
+      
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.7
+      with:
+        file: ./coverage.txt
+        token: ${{ secrets.CODECOV_TOKEN }}
