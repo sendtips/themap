@@ -36,11 +36,11 @@ type Notify struct {
 }
 
 // NewNotify returns Notify data from bytes
-func NewNotify(s, signkey string) (*Notify, error) {
+func NewNotify(payload, signkey string) (*Notify, error) {
 
 	var err error
 
-	p, err := url.ParseQuery(s)
+	p, err := url.ParseQuery(payload)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func NewNotify(s, signkey string) (*Notify, error) {
 	// Check signature
 	if notify.Signature != "" {
 		sig := NewSignature(signkey, notify.Signature)
-		if !sig.Verify(s) {
+		if !sig.Verify(payload) {
 			err = ErrBadSignature
 		}
 	}
