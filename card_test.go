@@ -21,7 +21,7 @@ func TestAddCardSession(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/Init",
+	httpmock.RegisterResponder("POST", APILink+"/Init",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
@@ -58,7 +58,7 @@ func TestStoreCard(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/storeCard",
+	httpmock.RegisterResponder("POST", APILink+"/storeCard",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
@@ -84,7 +84,7 @@ func TestStoreCard(t *testing.T) {
     "ErrCode": "INVALID_AUTHENTICATION"
 }`
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/storeCard",
+	httpmock.RegisterResponder("POST", APILink+"/storeCard",
 		httpmock.NewStringResponder(200, replyErr))
 
 	transErr := New("123", "123")
@@ -112,7 +112,7 @@ func TestDeleteCard(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/removeCard",
+	httpmock.RegisterResponder("POST", APILink+"/removeCard",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
@@ -134,7 +134,7 @@ func TestDeleteCard(t *testing.T) {
     "ErrCode": "INVALID_AUTHENTICATION"
 }`
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/removeCard",
+	httpmock.RegisterResponder("POST", APILink+"/removeCard",
 		httpmock.NewStringResponder(200, replyErr))
 
 	transErr := New("123", "123")

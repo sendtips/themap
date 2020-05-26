@@ -24,7 +24,7 @@ var (
 )
 
 // APILink sets payment gateway domain
-var APILink string = "https://api-stage.mapisacard.com" // no trailing slash
+var APILink string = "https://api-stage.mapcard.pro" // no trailing slash
 
 // newRequest creates new http request.
 // The params is path is a url part
@@ -33,7 +33,7 @@ var APILink string = "https://api-stage.mapisacard.com" // no trailing slash
 func newRequest(method, path string, headers map[string]string, payload []byte) (*http.Request, error) {
 
 	req, err := http.NewRequest(method, APILink+path, bytes.NewBuffer(payload))
-	req.Header.Set("User-Agent", "Sendtips/"+Version)
+	req.Header.Set("User-Agent", userAgent+"/"+Version)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Additional HTTP headers

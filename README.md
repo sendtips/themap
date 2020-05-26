@@ -12,7 +12,7 @@ A Go library to work with [TheMAP](https://doc.mapcard.pro/).
 Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`
 
 ## Example
-To obtain a session you need call `Init()` method.
+To obtain a payment session you need to call `Init()` method.
 
 ```go
 package main
@@ -26,11 +26,11 @@ func main() {
 	pay := themap.New("TestTerminal", "TestOrder123")
 	pay.SetTerm("123")
 
-	err := pay.Init(300) // Create session for 3.00RUB
+	err := pay.Init(300) // Create a session for 3.00RUB
 	if err != nil {
 		fmt.Printf("Error occurred: %v", err)
 	}
 
-	fmt.Printf("%s", pay.SessionGUID) // TheMAP session identifier
+	fmt.Printf("%s", pay.SessionGUID) // TheMAP payment session identifier
 }
 ```

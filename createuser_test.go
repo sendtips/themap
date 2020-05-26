@@ -26,7 +26,7 @@ func TestCreateUser(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/createUser",
+	httpmock.RegisterResponder("POST", APILink+"/createUser",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
@@ -46,7 +46,7 @@ func TestCreateUser(t *testing.T) {
 		t.Error("Empty MAP user id")
 	}
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/createUser",
+	httpmock.RegisterResponder("POST", APILink+"/createUser",
 		httpmock.NewStringResponder(200, replyErr))
 
 	transErr := New("123", "123")

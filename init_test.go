@@ -21,7 +21,7 @@ func TestInit(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/Init",
+	httpmock.RegisterResponder("POST", APILink+"/Init",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")

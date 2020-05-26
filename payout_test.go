@@ -19,7 +19,7 @@ func TestPayout(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://api-stage.mapisacard.com/Payout",
+	httpmock.RegisterResponder("POST", APILink+"/Payout",
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("123", "123")
