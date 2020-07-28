@@ -18,6 +18,8 @@ type Payment struct {
 	CustomParamsRow string     `json:"custom_params_raw"`
 	CardUID         string     `json:"card_uid"`
 	Action          string     `json:"action"`
+	ApplePayToken   string     `json:"apple_pay_token,omitempty"`
+	GooglePayToken  string     `json:"google_pay_token,omitempty"`
 	Recurrent       bool       `json:"recurrent"`
 	Card            Card       `json:"card,omitempty"`
 	User
