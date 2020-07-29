@@ -1,13 +1,12 @@
 package themap
 
 import (
-	//"fmt"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
 )
 
-func TestGooglePay(t *testing.T) {
+func TestApplePay(t *testing.T) {
 
 	payload := []byte(`{
   "protocolVersion":"ECv2",
@@ -21,7 +20,7 @@ func TestGooglePay(t *testing.T) {
 
 	reply := `{
     "Success": true,
-    "OrderId": "GooglePayTestOrder-001",
+    "OrderId": "ApplePayTestOrder-001",
     "Amount": 300,
     "ErrCode": ""
 }`
@@ -32,25 +31,11 @@ func TestGooglePay(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/Pay",
 		httpmock.NewStringResponder(200, reply))
 
-	trans := New("123", "123")
-	trans.SetTerm("123")
-	err := trans.GooglePay(300, payload)
+	trans := New("TestTerminal", "ApplePayTestOrder-001")
 
+	err := trans.ApplePay(300, payload)
 	if err != nil {
 		t.Error("Error occurred", err.Error())
 	}
 
 }
-
-// The ExampleGooglePay method executes test GooglePay payment
-// func ExampleGooglePay() {
-// 	pay := New("TestTerminal", "GooglePayTestOrder-001")
-//
-// 	err := pay.GooglePay(300, payload) // Create session for 3.00RUB
-// 	if err != nil {
-// 		fmt.Printf("Error occurred: %v", err)
-// 	}
-//
-// 	fmt.Printf("%v", pay.Success)
-// 	// Output: true
-// }

@@ -10,17 +10,17 @@ type Payment struct {
 	Key             string     `json:"key"`
 	MerchantID      string     `json:"merchant_order_id"`
 	Amount          int        `json:"amount"`
-	AddCard         bool       `json:"add_card"`
-	Type            string     `json:"type"`
-	PaymentType     string     `json:"payment_type"`
-	Lifetime        int        `json:"lifetime"`
-	Credential      Credential `json:"credential"`
-	CustomParamsRow string     `json:"custom_params_raw"`
-	CardUID         string     `json:"card_uid"`
-	Action          string     `json:"action"`
+	AddCard         bool       `json:"add_card,omitempty"`
+	Type            string     `json:"type,omitempty"`
+	PaymentType     string     `json:"payment_type,omitempty"`
+	Lifetime        int        `json:"lifetime,omitempty"`
+	Credential      Credential `json:"credential,omitempty"`
+	CustomParamsRow string     `json:"custom_params_raw,omitempty"`
+	CardUID         string     `json:"card_uid,omitempty"`
+	Action          string     `json:"action,omitempty"`
 	ApplePayToken   string     `json:"apple_pay_token,omitempty"`
 	GooglePayToken  string     `json:"google_pay_token,omitempty"`
-	Recurrent       bool       `json:"recurrent"`
+	Recurrent       bool       `json:"recurrent,omitempty"`
 	Card            Card       `json:"card,omitempty"`
 	User
 
