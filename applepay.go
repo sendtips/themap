@@ -1,10 +1,14 @@
 package themap
 
+import (
+	"encoding/base64"
+)
+
 //  ApplePay method executes ApplePay payment
-func (p *Payment) ApplePay(amount int, token string) error {
+func (p *Payment) ApplePay(amount int, token []byte) error {
 	var err error
 
-	p.ApplePayToken = token
+	p.ApplePayToken = base64.StdEncoding.EncodeToString(token)
 	p.Amount = amount
 
 	err = proceedRequest("POST", "/Pay", p)
