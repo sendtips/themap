@@ -14,7 +14,7 @@ func (p *Payment) Payout(orderid, card string, ispan bool) error {
 		p.Card = Card{UID: card}
 	}
 
-	p.CustomParamsRDY = "OriginalOrderID=" + orderid
+	p.CustomParamsRDY = CParamsRDY{OriginalOrderID: orderid}
 
 	err = proceedRequest("POST", "/Payout", p)
 	if err != nil {

@@ -16,7 +16,7 @@ type Payment struct {
 	Lifetime        int        `json:"lifetime,omitempty"`
 	Credential      Credential `json:"credential,omitempty"`
 	CustomParamsRow string     `json:"custom_params_raw,omitempty"`
-	CustomParamsRDY string     `json:"custom_params_rdy,omitempty"`
+	CustomParamsRDY CParamsRDY `json:"custom_params_rdy,omitempty"`
 	CardUID         string     `json:"card_uid,omitempty"`
 	Action          string     `json:"action,omitempty"`
 	ApplePayToken   string     `json:"apple_pay_token,omitempty"`
@@ -68,6 +68,11 @@ type Card struct {
 	CVV string `json:"cvv,omitempty"`
 	// Card holder name
 	Holder string `json:"holder,omitempty"`
+}
+
+// CParamsRDY custom json payload used in TheMAP payouts
+type CParamsRDY struct {
+	OriginalOrderID string `json:"OriginalOrderID,omitempty"`
 }
 
 // User represents user at TheMAP
