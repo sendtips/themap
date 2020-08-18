@@ -16,6 +16,7 @@ type Payment struct {
 	Lifetime        int        `json:"lifetime,omitempty"`
 	Credential      Credential `json:"credential,omitempty"`
 	CustomParamsRow string     `json:"custom_params_raw,omitempty"`
+	CustomParamsRDY string     `json:"custom_params_rdy,omitempty"`
 	CardUID         string     `json:"card_uid,omitempty"`
 	Action          string     `json:"action,omitempty"`
 	ApplePayToken   string     `json:"apple_pay_token,omitempty"`

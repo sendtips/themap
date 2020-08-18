@@ -24,7 +24,7 @@ func TestPayout(t *testing.T) {
 
 	trans := New("123", "123")
 	trans.SetTerm("123")
-	err := trans.Payout("123CARDSHADOW", false)
+	err := trans.Payout("TipNo1", "123CARDSHADOW", false)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
