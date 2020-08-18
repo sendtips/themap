@@ -6,7 +6,7 @@ func (p *Payment) AddCardSession() error {
 	var err error
 
 	// skip validation at bank
-	//p.Amount = 1
+	p.Amount = 1
 	p.Type = "add"
 	p.AddCard = true
 
