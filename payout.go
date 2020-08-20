@@ -1,5 +1,10 @@
 package themap
 
+// NewPayout create Payout object
+func NewPayout(key, merchid string) *Payment {
+	return &Payment{Key: key, MerchantID: merchid}
+}
+
 // Payout makes payout to card
 // orderid original orderid used in Charge or Pay methods
 // card parameter is a cardno or shadow card representation

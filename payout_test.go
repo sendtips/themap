@@ -1,10 +1,20 @@
 package themap
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
 )
+
+func TestNewPayout(t *testing.T) {
+	trans := NewPayout("some", "123")
+	dummy := &Payment{}
+
+	if reflect.TypeOf(trans) != reflect.TypeOf(dummy) {
+		t.Errorf("NewPayout() wrong return %T must be %T type", reflect.TypeOf(trans), reflect.TypeOf(dummy))
+	}
+}
 
 func TestPayout(t *testing.T) {
 
@@ -22,7 +32,7 @@ func TestPayout(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/Payout",
 		httpmock.NewStringResponder(200, reply))
 
-	trans := New("123", "123")
+	trans := NewPayout("123", "123")
 	trans.SetTerm("123")
 	err := trans.Payout(300, "TipNo1", "123CARDSHADOW", false)
 
