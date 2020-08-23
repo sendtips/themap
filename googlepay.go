@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 )
 
-//  GooglePay method executes Google Pay payment
+// GooglePay method executes Google Pay payment
 func (p *Payment) GooglePay(amount int, token []byte) error {
 	var err error
 

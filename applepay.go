@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 )
 
-//  ApplePay method executes ApplePay payment
+// ApplePay method executes ApplePay payment
 func (p *Payment) ApplePay(amount int, token []byte) error {
 	var err error
 

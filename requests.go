@@ -2,12 +2,18 @@ package themap
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"io"
 	"log"
 	"net/http"
+	"time"
 )
+
+// requestTimeout sets timeout for context
+// A duration string is a possibly signed sequence of decimal numbers
+const requestTimeout string = "15s"
 
 var (
 	// ErrBadJSON error throws when JSON marshal/unmarshal problem occurs
@@ -30,9 +36,9 @@ var APILink string = "https://api-stage.mapcard.pro" // no trailing slash
 // The params is path is a url part
 // HTTP method, then map[string]string with additional headers
 // and a body of request
-func newRequest(method, path string, headers map[string]string, payload []byte) (*http.Request, error) {
+func newRequest(ctx context.Context, method, path string, headers map[string]string, payload []byte) (*http.Request, error) {
 
-	req, err := http.NewRequest(method, APILink+path, bytes.NewBuffer(payload))
+	req, err := http.NewRequestWithContext(ctx, method, APILink+path, bytes.NewBuffer(payload))
 	req.Header.Set("User-Agent", userAgent+"/"+Version)
 	req.Header.Set("Content-Type", "application/json")
 
@@ -67,7 +73,11 @@ func proceedRequest(method, path string, p *Payment) error {
 		return ErrBadJSON
 	}
 
-	req, err = newRequest(method, path, nil, payload)
+	timeout, err := time.ParseDuration(requestTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	req, err = newRequest(ctx, method, path, nil, payload)
 	if err != nil {
 		return err
 	}
