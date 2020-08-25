@@ -2,6 +2,7 @@ package themap
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -155,9 +156,9 @@ func TestDeleteCard(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway for card manage
 func ExampleAddCardSession() {
-	pay := New("SendtipsTestTerminal", "CardAdd1")
-	pay.SetAuthUser("login", "password123")
-	pay.SetTerm("123")
+	pay := New(os.Getenv("THEMAPTERMID"), "CardAdd1")
+	pay.SetMerch(os.Getenv("THEMAPMERCHID"), os.Getenv("THEMAPMERCHPW"))
+	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
 
 	err := pay.AddCardSession() // Create add_card session
 	if err != nil {

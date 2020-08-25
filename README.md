@@ -11,6 +11,10 @@ A Go library to work with [TheMAP](https://doc.mapcard.pro/).
 ## Install
 Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`
 
+## Tests
+Run tests using `THEMAPTERMID=TestTerminal THEMAPTERMPW=123 go test -v .`.
+Note: Use your credentials. The provided above will not work.
+
 ## Example
 To obtain a payment session you need to call `Init()` method.
 

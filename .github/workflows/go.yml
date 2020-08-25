@@ -26,6 +26,14 @@ jobs:
 
     - name: Run tests
       run: go test -race -coverprofile=coverage.txt -covermode=atomic
+      env:
+        - THEMAPTERMID: ${{ secrets.THEMAPTERMID }}
+        - THEMAPTERMPW: ${{ secrets.THEMAPTERMPW }}
+        - THEMAPMERCHID: ${{ secrets.THEMAPMERCHID }}
+        - THEMAPMERCHPW: ${{ secrets.THEMAPMERCHPW }}
+        - THEMAPSIGNKEY: ${{ secrets.THEMAPSIGNKEY }}
+        - THEMAPAPIHOST: ${{ secrets.THEMAPAPIHOST }}
+
       
     - name: Codecov
       uses: codecov/codecov-action@v1.0.7

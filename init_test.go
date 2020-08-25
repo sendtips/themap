@@ -2,6 +2,7 @@ package themap
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -37,8 +38,8 @@ func TestInit(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway
 func ExampleInit() {
-	pay := New("SendtipsTestTerminal", "TestOrder123")
-	pay.SetTerm("123")
+	pay := New(os.Getenv("THEMAPTERMID"), "TestOrder123")
+	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
 
 	err := pay.Init(300) // Create session for 3.00RUB
 	if err != nil {
