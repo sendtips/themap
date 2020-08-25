@@ -13,7 +13,7 @@ import (
 
 // requestTimeout sets timeout for context
 // A duration string is a possibly signed sequence of decimal numbers
-const requestTimeout string = "15s"
+const requestTimeout time.Duration = 15 * time.Second
 
 var (
 	// ErrBadJSON error throws when JSON marshal/unmarshal problem occurs
@@ -73,8 +73,7 @@ func proceedRequest(method, path string, p *Payment) error {
 		return ErrBadJSON
 	}
 
-	timeout, err := time.ParseDuration(requestTimeout)
-	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	ctx, cancel := context.WithTimeout(context.Background(), requestTimeout)
 	defer cancel()
 
 	req, err = newRequest(ctx, method, path, nil, payload)
