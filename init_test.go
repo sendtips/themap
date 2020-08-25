@@ -38,6 +38,12 @@ func TestInit(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway
 func ExampleInit() {
+	// check themap hostname env is set, otherwise use default host
+	apihost, ok := os.LookupEnv("THEMAPAPIHOST")
+	if ok {
+		APILink = apihost
+	}
+
 	pay := New(os.Getenv("THEMAPTERMID"), "TestOrder123")
 	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
 

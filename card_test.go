@@ -156,6 +156,12 @@ func TestDeleteCard(t *testing.T) {
 // The Init method obtain session token
 // from TheMAP payment gateway for card manage
 func ExampleAddCardSession() {
+	// check themap hostname env is set, otherwise use default host
+	apihost, ok := os.LookupEnv("THEMAPAPIHOST")
+	if ok {
+		APILink = apihost
+	}
+
 	pay := New(os.Getenv("THEMAPTERMID"), "CardAdd1")
 	pay.SetMerch(os.Getenv("THEMAPMERCHID"), os.Getenv("THEMAPMERCHPW"))
 	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
