@@ -73,7 +73,7 @@ func proceedRequest(method, path string, p *Payment) error {
 		return ErrBadJSON
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), requestTimeout)
+	ctx, cancel := context.WithTimeout(context.TODO(), requestTimeout)
 	defer cancel()
 
 	req, err = newRequest(ctx, method, path, nil, payload)
