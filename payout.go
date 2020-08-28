@@ -1,15 +1,19 @@
 package themap
 
+import (
+	"context"
+)
+
 // NewPayout create Payout object
 func NewPayout(key, merchid string) *Payment {
 	return &Payment{Key: key, MerchantID: merchid}
 }
 
-// Payout makes payout to card
-// orderid original orderid used in Charge or Pay methods
-// card parameter is a cardno or shadow card representation
-// second paramenter is pan flag, if true we treat first prameter as actual card number
-func (p *Payment) Payout(amount int, orderid, card string, ispan bool) error {
+// Payout makes payout to card.
+// Orderid patameter holds orderid used in Charge or Pay methods.
+// card parameter is a cardno or shadow card representation.
+// ispan paramenter if true we treat card prameter as pan, if false - card holds a shadow pan
+func (p *Payment) Payout(ctx context.Context, amount int, orderid, card string, ispan bool) error {
 
 	var err error
 
@@ -23,7 +27,7 @@ func (p *Payment) Payout(amount int, orderid, card string, ispan bool) error {
 
 	p.CustomParamsRDY = CParamsRDY{OriginalOrderID: orderid}
 
-	err = proceedRequest("POST", "/Payout", p)
+	err = proceedRequest(ctx, "POST", "/Payout", p)
 	if err != nil {
 		return err
 	}

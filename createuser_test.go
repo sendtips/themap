@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"context"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -29,10 +30,12 @@ func TestCreateUser(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/createUser",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := New("123", "123")
 	trans.SetAuthUser("login", "123")
 	trans.SetTerm("123")
-	err := trans.CreateUser("123.123.123.123", "18005000000", "username@example.com")
+	err := trans.CreateUser(ctx, "123.123.123.123", "18005000000", "username@example.com")
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -52,7 +55,7 @@ func TestCreateUser(t *testing.T) {
 	transErr := New("123", "123")
 	transErr.SetAuthUser("login", "123")
 	transErr.SetTerm("123")
-	err2 := transErr.CreateUser("123.123.123.123", "18005000000", "username@example.com")
+	err2 := transErr.CreateUser(ctx, "123.123.123.123", "18005000000", "username@example.com")
 
 	if transErr.AlreadyCreated != true {
 		t.Error("User alredy creaded flag is wrong")

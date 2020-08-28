@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"testing"
@@ -25,9 +26,11 @@ func TestAddCardSession(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/Init",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := New("123", "123")
 	trans.SetTerm("123")
-	err := trans.AddCardSession()
+	err := trans.AddCardSession(ctx)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -62,10 +65,12 @@ func TestStoreCard(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/storeCard",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := New("123", "123")
 	trans.SetAuthUser("login", "123")
 	trans.SetTerm("123")
-	err := trans.StoreCard("4300000000000777", "123", "Ivan Ivanov", 12, 21)
+	err := trans.StoreCard(ctx, "4300000000000777", "123", "Ivan Ivanov", 12, 21)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -91,7 +96,7 @@ func TestStoreCard(t *testing.T) {
 	transErr := New("123", "123")
 	transErr.SetAuthUser("login", "")
 	transErr.SetTerm("123")
-	err2 := trans.StoreCard("4300000000000777", "123", "Ivan Ivanov", 12, 21)
+	err2 := trans.StoreCard(ctx, "4300000000000777", "123", "Ivan Ivanov", 12, 21)
 
 	if transErr.Success != false {
 		t.Error("Successfully added bad card")
@@ -116,10 +121,12 @@ func TestDeleteCard(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/removeCard",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := New("123", "123")
 	trans.SetAuthUser("login", "123")
 	trans.SetTerm("123")
-	err := trans.DeleteCard("7sTwecksRSs1fIpUQw8su")
+	err := trans.DeleteCard(ctx, "7sTwecksRSs1fIpUQw8su")
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -141,7 +148,7 @@ func TestDeleteCard(t *testing.T) {
 	transErr := New("123", "123")
 	transErr.SetAuthUser("login", "")
 	transErr.SetTerm("123")
-	err2 := transErr.DeleteCard("456ceFOFYXmjlZraP12nfP")
+	err2 := transErr.DeleteCard(ctx, "456ceFOFYXmjlZraP12nfP")
 
 	if transErr.Success != false {
 		t.Error("Success delete wrong card")
@@ -166,7 +173,7 @@ func ExampleAddCardSession() {
 	pay.SetMerch(os.Getenv("THEMAPMERCHID"), os.Getenv("THEMAPMERCHPW"))
 	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
 
-	err := pay.AddCardSession() // Create add_card session
+	err := pay.AddCardSession(context.TODO()) // Create add_card session
 	if err != nil {
 		fmt.Printf("Error occurred: %v", err)
 	}

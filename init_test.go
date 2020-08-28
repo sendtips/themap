@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"testing"
@@ -25,9 +26,11 @@ func TestInit(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/Init",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := New("123", "123")
 	trans.SetTerm("123")
-	err := trans.Init(200)
+	err := trans.Init(ctx, 200)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())
@@ -47,7 +50,7 @@ func ExampleInit() {
 	pay := New(os.Getenv("THEMAPTERMID"), "TestOrder123")
 	pay.SetTerm(os.Getenv("THEMAPTERMPW"))
 
-	err := pay.Init(300) // Create session for 3.00RUB
+	err := pay.Init(context.TODO(), 300) // Create session for 3.00RUB
 	if err != nil {
 		fmt.Printf("Error occurred: %v", err)
 	}

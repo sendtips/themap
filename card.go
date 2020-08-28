@@ -1,7 +1,11 @@
 package themap
 
+import (
+	"context"
+)
+
 // AddCardSession makes session request to store user card
-func (p *Payment) AddCardSession() error {
+func (p *Payment) AddCardSession(ctx context.Context) error {
 
 	var err error
 
@@ -10,7 +14,7 @@ func (p *Payment) AddCardSession() error {
 	p.Type = "add"
 	p.AddCard = true
 
-	err = proceedRequest("POST", "/Init", p)
+	err = proceedRequest(ctx, "POST", "/Init", p)
 	if err != nil {
 		return err
 	}
@@ -22,13 +26,13 @@ func (p *Payment) AddCardSession() error {
 }
 
 // StoreCard adds card
-func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
+func (p *Payment) StoreCard(ctx context.Context, card, cvv, holder string, month, year int) error {
 
 	var err error
 
 	p.Card = Card{PAN: card, Month: month, Year: year, CVV: cvv, Holder: holder}
 
-	err = proceedRequest("POST", "/storeCard", p)
+	err = proceedRequest(ctx, "POST", "/storeCard", p)
 	if err != nil {
 		return err
 	}
@@ -40,13 +44,13 @@ func (p *Payment) StoreCard(card, cvv, holder string, month, year int) error {
 }
 
 // DeleteCard removes card
-func (p *Payment) DeleteCard(card string) error {
+func (p *Payment) DeleteCard(ctx context.Context, card string) error {
 
 	var err error
 
 	p.Card = Card{UID: card}
 
-	err = proceedRequest("POST", "/removeCard", p)
+	err = proceedRequest(ctx, "POST", "/removeCard", p)
 	if err != nil {
 		return err
 	}

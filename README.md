@@ -15,7 +15,7 @@ Install by import `github.com/sendtips/themap` or via `go get github.com/sendtip
 Run tests using `THEMAPTERMID=TestTerminal THEMAPTERMPW=123 THEMAPMERCHID=TestMerchant THEMAPMERCHPW=123 THEMAPAPIHOST=https://api-stage.mapcard.pro go test -v .`.
 
 *Note:* Use your credentials. The provided above will not work.
-There also `THEMAPSIGNKEY` and `THEMAPAPIHOST` variables may be set, but currently, no one test uses it.
+There also `THEMAPSIGNKEY` variable exists, but currently, no one test uses it.
 
 ## Example
 To obtain a payment session you need to call `Init()` method.
@@ -25,6 +25,7 @@ package main
 
 import (
 	"fmt"
+	"context"
 	"github.com/sendtips/themap"
 )
 
@@ -32,7 +33,7 @@ func main() {
 	pay := themap.New("TestTerminal", "TestOrder123")
 	pay.SetTerm("123")
 
-	err := pay.Init(300) // Create a session for 3.00RUB
+	err := pay.Init(context.TODO(), 300) // Create a session for 3.00RUB
 	if err != nil {
 		fmt.Printf("Error occurred: %v", err)
 	}

@@ -60,7 +60,7 @@ func doRequest(req *http.Request) (*http.Response, error) {
 
 // proceedRequest deal with data prep and preceedRequest
 // handle response and pack all data back to our structure
-func proceedRequest(method, path string, p *Payment) error {
+func proceedRequest(ctx context.Context, method, path string, p *Payment) error {
 	var err error
 	var payload []byte
 	var result bytes.Buffer
@@ -73,7 +73,7 @@ func proceedRequest(method, path string, p *Payment) error {
 		return ErrBadJSON
 	}
 
-	ctx, cancel := context.WithTimeout(context.TODO(), requestTimeout)
+	ctx, cancel := context.WithTimeout(ctx, requestTimeout)
 	defer cancel()
 
 	req, err = newRequest(ctx, method, path, nil, payload)

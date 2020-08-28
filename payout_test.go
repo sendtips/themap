@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"context"
 	"reflect"
 	"testing"
 
@@ -32,9 +33,11 @@ func TestPayout(t *testing.T) {
 	httpmock.RegisterResponder("POST", APILink+"/Payout",
 		httpmock.NewStringResponder(200, reply))
 
+	ctx := context.Background()
+
 	trans := NewPayout("123", "123")
 	trans.SetTerm("123")
-	err := trans.Payout(300, "TipNo1", "123CARDSHADOW", false)
+	err := trans.Payout(ctx, 300, "TipNo1", "123CARDSHADOW", false)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())

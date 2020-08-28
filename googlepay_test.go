@@ -1,7 +1,7 @@
 package themap
 
 import (
-	//"fmt"
+	"context"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -34,7 +34,7 @@ func TestGooglePay(t *testing.T) {
 
 	trans := New("123", "123")
 	trans.SetTerm("123")
-	err := trans.GooglePay(300, payload)
+	err := trans.GooglePay(context.TODO(), 300, payload)
 
 	if err != nil {
 		t.Error("Error occurred", err.Error())

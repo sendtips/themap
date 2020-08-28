@@ -1,6 +1,7 @@
 package themap
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strings"
@@ -29,8 +30,9 @@ func TestApplePay(t *testing.T) {
 		httpmock.NewStringResponder(200, reply))
 
 	trans := New("SendtipsTestTerminal", "ApplePayTestOrder-001")
+	ctx := context.Background()
 
-	err := trans.ApplePay(300, payload)
+	err := trans.ApplePay(ctx, 300, payload)
 	if err != nil {
 		t.Error("Error occurred", err.Error())
 	}
@@ -53,7 +55,7 @@ func ExampleApplePay() {
 
 	pay := New(os.Getenv("THEMAPTERMID"), "ApplePayTestOrder-001")
 
-	err := pay.ApplePay(300, payload)
+	err := pay.ApplePay(context.TODO(), 300, payload)
 	if err != nil {
 		fmt.Errorf("Error occurred: %v", err)
 	}

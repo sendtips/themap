@@ -1,12 +1,16 @@
 package themap
 
+import (
+	"context"
+)
+
 // Init obtain session token from TheMAP payment gateway
-func (p *Payment) Init(amount int) error {
+func (p *Payment) Init(ctx context.Context, amount int) error {
 	var err error
 
 	p.Amount = amount
 
-	err = proceedRequest("POST", "/Init", p)
+	err = proceedRequest(ctx, "POST", "/Init", p)
 	if err != nil {
 		return err
 	}

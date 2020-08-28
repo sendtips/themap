@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// Signature calculates checksum
+// Signature type holds keys to calculate signature
 type Signature struct {
 	Key, Message []byte
 	Hash         string
@@ -21,7 +21,7 @@ func NewSignature(key, hash string) *Signature {
 	return &Signature{Key: []byte(key), Hash: hash}
 }
 
-// sign generate signature hash
+// sign calculates checksum
 func (s *Signature) sign() bool {
 	mac := hmac.New(sha256.New, s.Key)
 	mac.Write(s.Message)
