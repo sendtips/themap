@@ -31,7 +31,7 @@ import (
 
 func main() {
 	pay := themap.New("TestTerminal", "TestOrder123")
-	pay.SetTerm("123")
+	pay.SetTerm("123") // Sets Terminal password
 
 	err := pay.Init(context.TODO(), 300) // Create a session for 3.00RUB
 	if err != nil {
