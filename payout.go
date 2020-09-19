@@ -25,7 +25,7 @@ func (p *Payment) Payout(ctx context.Context, amount int, orderid, card string, 
 		p.Card = Card{UID: card}
 	}
 
-	p.CustomParamsRDY = CParamsRDY{OriginalOrderID: orderid}
+	p.CustomParamsRDY = PayoutParams{OriginalOrderID: orderid}
 
 	err = proceedRequest(ctx, "POST", "/Payout", p)
 	if err != nil {

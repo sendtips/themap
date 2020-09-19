@@ -7,22 +7,22 @@ import (
 
 // Payment holds query to initialize payment session
 type Payment struct {
-	Key             string     `json:"key"`
-	MerchantID      string     `json:"merchant_order_id"`
-	Amount          int        `json:"amount"`
-	AddCard         bool       `json:"add_card,omitempty"`
-	Type            string     `json:"type,omitempty"`
-	PaymentType     string     `json:"payment_type,omitempty"`
-	Lifetime        int        `json:"lifetime,omitempty"`
-	Credential      Credential `json:"credential,omitempty"`
-	CustomParamsRow string     `json:"custom_params_raw,omitempty"`
-	CustomParamsRDY CParamsRDY `json:"custom_params_rdy,omitempty"`
-	CardUID         string     `json:"card_uid,omitempty"`
-	Action          string     `json:"action,omitempty"`
-	ApplePayToken   string     `json:"apple_pay_token,omitempty"`
-	GooglePayToken  string     `json:"google_pay_token,omitempty"`
-	Recurrent       bool       `json:"recurrent,omitempty"`
-	Card            Card       `json:"card,omitempty"`
+	Key             string       `json:"key"`
+	MerchantID      string       `json:"merchant_order_id"`
+	Amount          int          `json:"amount"`
+	AddCard         bool         `json:"add_card,omitempty"`
+	Type            string       `json:"type,omitempty"`
+	PaymentType     string       `json:"payment_type,omitempty"`
+	Lifetime        int          `json:"lifetime,omitempty"`
+	Credential      Credential   `json:"credential,omitempty"`
+	CustomParamsRow string       `json:"custom_params_raw,omitempty"`
+	CustomParamsRDY PayoutParams `json:"custom_params_rdy,omitempty"`
+	CardUID         string       `json:"card_uid,omitempty"`
+	Action          string       `json:"action,omitempty"`
+	ApplePayToken   string       `json:"apple_pay_token,omitempty"`
+	GooglePayToken  string       `json:"google_pay_token,omitempty"`
+	Recurrent       bool         `json:"recurrent,omitempty"`
+	Card            Card         `json:"card,omitempty"`
 	User
 
 	Reply
@@ -70,8 +70,8 @@ type Card struct {
 	Holder string `json:"holder,omitempty"`
 }
 
-// CParamsRDY custom json payload used in TheMAP payouts
-type CParamsRDY struct {
+// PayoutParams custom json data used in payouts
+type PayoutParams struct {
 	OriginalOrderID string `json:"OriginalOrderID,omitempty"`
 }
 
