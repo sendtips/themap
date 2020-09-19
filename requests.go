@@ -32,6 +32,13 @@ var (
 // APILink sets payment gateway domain
 var APILink string = "https://api-stage.mapcard.pro" // no trailing slash
 
+// global client to reuse existing connections
+var client http.Client
+
+func init() {
+	client = http.Client{}
+}
+
 // newRequest creates new http request.
 // The params is path is a url part
 // HTTP method, then map[string]string with additional headers
@@ -50,12 +57,6 @@ func newRequest(ctx context.Context, method, path string, headers map[string]str
 	}
 
 	return req, err
-}
-
-// doRequest executing http.Request and return body
-func doRequest(req *http.Request) (*http.Response, error) {
-	client := http.Client{}
-	return client.Do(req)
 }
 
 // proceedRequest deal with data prep and preceedRequest
@@ -81,7 +82,7 @@ func proceedRequest(ctx context.Context, method, path string, p *Payment) error 
 		return err
 	}
 
-	resp, err = doRequest(req)
+	resp, err = client.Do(req)
 	if err != nil {
 		return err
 	}
