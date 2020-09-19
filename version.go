@@ -2,6 +2,6 @@ package themap
 
 const (
 	// Version string
-	Version   string = "0.9"
-	userAgent string = "Sendtips-TheMAP-Go" // UserAgent name
+	Version   string = "1.0"
+	userAgent string = "Sendtips-Go" // UserAgent name
 )
