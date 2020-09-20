@@ -14,7 +14,7 @@ A Go library to work with [TheMAP](https://doc.mapcard.pro/).
 Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`
 
 ## Tests
-Run tests using `THEMAPTERMID=TestTerminal THEMAPTERMPW=123 THEMAPMERCHID=TestMerchant THEMAPMERCHPW=123 THEMAPAPIHOST=https://api-stage.mapcard.pro go test -v .`.
+Run tests using `THEMAPTERMID=TestTerminal THEMAPTERMPW=123 THEMAPMERCHID=TestMerchant THEMAPMERCHPW=123 THEMAPAPIHOST=https://api-stage.mapcard.pro go test -v .`
 
 *Note:* Use your credentials. The provided above will not work.
 There also `THEMAPSIGNKEY` variable exists, but currently, no one test uses it.
@@ -33,7 +33,7 @@ import (
 
 func main() {
 	pay := themap.New("TestTerminal", "TestOrder123")
-	pay.SetTerm("123") // Sets Terminal password
+	pay.SetTerm("123") // Set Terminal password
 
 	err := pay.Init(context.TODO(), 300) // Create a session for 3.00RUB
 	if err != nil {
