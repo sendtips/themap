@@ -74,10 +74,10 @@ func proceedRequest(ctx context.Context, method, path string, p *Payment) error 
 		return ErrBadJSON
 	}
 
-	ctx, cancel := context.WithTimeout(ctx, requestTimeout)
+	ctx_timeout, cancel := context.WithTimeout(ctx, requestTimeout)
 	defer cancel()
 
-	req, err = newRequest(ctx, method, path, nil, payload)
+	req, err = newRequest(ctx_timeout, method, path, nil, payload)
 	if err != nil {
 		return err
 	}
