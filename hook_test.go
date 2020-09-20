@@ -2,6 +2,7 @@ package themap
 
 import (
 	"errors"
+	"os"
 	"strconv"
 	"testing"
 )
@@ -41,7 +42,7 @@ func TestHook(t *testing.T) {
 
 		// Bad signature
 		{`Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Signature=BadSignature&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=true`,
-			&Notify{Type: "Block", Amount: 2000, CardNumber: "411111xxxxxx1112"}, ErrBadSignature, "dd"},
+			&Notify{Type: "Block", Amount: 2000, CardNumber: "411111xxxxxx1112"}, ErrBadSignature, os.Getenv("THEMAPSIGNKEY")},
 	}
 
 	for _, test := range tests {
