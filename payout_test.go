@@ -35,6 +35,7 @@ func TestPayout(t *testing.T) {
 
 	ctx := context.Background()
 
+	// Shadow card number
 	trans := NewPayout("123", "123")
 	trans.SetTerm("123")
 	err := trans.Payout(ctx, 300, "TipNo1", "123CARDSHADOW", false)
@@ -44,6 +45,19 @@ func TestPayout(t *testing.T) {
 	}
 
 	if trans.BankName != "TestBank" {
+		t.Error("Wrong bankname BankName")
+	}
+
+	// PAN
+	transpan := NewPayout("123", "123")
+	transpan.SetTerm("123")
+	err2 := transpan.Payout(ctx, 300, "TipNo2", "4111111111111112", true)
+
+	if err2 != nil {
+		t.Error("Error occurred", err2.Error())
+	}
+
+	if transpan.BankName != "TestBank" {
 		t.Error("Wrong bankname BankName")
 	}
 
