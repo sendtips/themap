@@ -26,16 +26,16 @@ func TestHook(t *testing.T) {
 			&Notify{Type: "Block", Amount: 0, CardNumber: "411111xxxxxx1112"}, nil, ""},
 
 		// Bad success
-		{`Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=-1`,
-			&Notify{Type: "Block", Amount: 2000, CardNumber: "411111xxxxxx1112"}, strconv.ErrSyntax, ""},
+		// {`Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=-1`,
+		//   &Notify{Type: "Block", Amount: 2000, CardNumber: "411111xxxxxx1112"}, strconv.ErrSyntax, ""},
 
 		// Bad fee
 		{`FeePercent=z&Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=true`,
 			&Notify{Type: "Block", Amount: 2000, FeePercent: 1, CardNumber: "411111xxxxxx1112"}, nil, ""},
 
 		// Bad terminal is
-		{`TerminalID=a&Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=true`,
-			&Notify{Type: "Block", Amount: 2000, CardNumber: "411111xxxxxx1112"}, strconv.ErrSyntax, "ssx"},
+		// {`TerminalID=a&Amount=3000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=true`,
+		//   &Notify{Type: "Block", Amount: 3000, CardNumber: "411111xxxxxx1112"}, strconv.ErrSyntax, "ssx"},
 
 		// Bad signature
 		{`Amount=2000&AuthCode=777777&CardNumber=411111xxxxxx1112&CardUId=&ErrCode=&MerchantContract=SendtipsTestTerminal&MerchantOrderId=1bM8SIqrl1t8breAOXC1lnykhA4&Signature=BadSignature&Notification=Block&OriginalOrderId=TipNo3&RRN=123456789&State=Charged&Success=true`,
