@@ -24,7 +24,9 @@ func (p *Payment) ApplePay(ctx context.Context, amount int, token []byte) error 
 }
 
 // ApplePayBlock blocks
-// NOT FOR PRODUCTION
+// Only blocks amount, without charge
+// This method currentry uset for some internal tests
+// To actually charge use ApplePay() method insread
 func (p *Payment) ApplePayBlock(ctx context.Context, amount int, token []byte) error {
 	var err error
 
