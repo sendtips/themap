@@ -65,9 +65,10 @@ func NewNotify(payload, signkey string) (*Notify, error) {
 
 	if p.Get("FeePercent") != "" {
 		fee, err := strconv.ParseFloat(p.Get("FeePercent"), 32)
-		notify.FeePercent = float32(fee)
 		if err != nil {
 			notify.FeePercent = 0
+		} else {
+			notify.FeePercent = float32(fee)
 		}
 	}
 
