@@ -11,7 +11,10 @@
 A Go library to work with [TheMAP](https://doc.mapcard.pro/).
 
 ## Install
-Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`
+Install by import `github.com/sendtips/themap` or via `go get github.com/sendtips/themap`.
+
+The library itself will work on go1.13,
+but to run tests you need go1.14 due to `strvconv.NumError` received Unwrap() method only in v1.14.
 
 ## Tests
 Run tests using `THEMAPTERMID=TestTerminal THEMAPTERMPW=123 THEMAPMERCHID=TestMerchant THEMAPMERCHPW=123 THEMAPAPIHOST=https://api-stage.mapcard.pro go test -v .`
