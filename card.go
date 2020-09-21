@@ -16,9 +16,7 @@ func (p *Payment) AddCardSession(ctx context.Context) error {
 
 	err = proceedRequest(ctx, "POST", "/Init", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }
 
@@ -31,9 +29,7 @@ func (p *Payment) StoreCard(ctx context.Context, card, cvv, holder string, month
 
 	err = proceedRequest(ctx, "POST", "/storeCard", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }
 
@@ -46,8 +42,6 @@ func (p *Payment) DeleteCard(ctx context.Context, card string) error {
 
 	err = proceedRequest(ctx, "POST", "/removeCard", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }

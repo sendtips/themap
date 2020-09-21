@@ -14,8 +14,6 @@ func (p *Payment) GooglePay(ctx context.Context, amount int, token []byte) error
 
 	err = proceedRequest(ctx, "POST", "/Pay", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }

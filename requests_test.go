@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewRequest(t *testing.T) {
-	req, _ := newRequest(context.Background(), "POST", "/Init", nil, nil)
+	req, _ := newRequest(context.Background(), "POST", "/Init", nil)
 	dummy := &http.Request{}
 
 	if reflect.TypeOf(req) != reflect.TypeOf(dummy) {

@@ -43,18 +43,11 @@ func init() {
 // The params is path is a url part
 // HTTP method, then map[string]string with additional headers
 // and a body of request
-func newRequest(ctx context.Context, method, path string, headers map[string]string, payload []byte) (*http.Request, error) {
+func newRequest(ctx context.Context, method, path string, payload []byte) (*http.Request, error) {
 
 	req, err := http.NewRequestWithContext(ctx, method, APILink+path, bytes.NewBuffer(payload))
 	req.Header.Set("User-Agent", userAgent+"/"+Version)
 	req.Header.Set("Content-Type", "application/json")
-
-	// Additional HTTP headers
-	if headers != nil {
-		for key, val := range headers {
-			req.Header.Set(key, val)
-		}
-	}
 
 	return req, err
 }
@@ -77,7 +70,7 @@ func proceedRequest(ctx context.Context, method, path string, p *Payment) error 
 	ctx_timeout, cancel := context.WithTimeout(ctx, requestTimeout)
 	defer cancel()
 
-	req, err = newRequest(ctx_timeout, method, path, nil, payload)
+	req, err = newRequest(ctx_timeout, method, path, payload)
 	if err != nil {
 		return err
 	}

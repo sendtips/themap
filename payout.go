@@ -29,8 +29,6 @@ func (p *Payment) Payout(ctx context.Context, amount int, orderid, card string, 
 
 	err = proceedRequest(ctx, "POST", "/Payout", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }

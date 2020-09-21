@@ -13,8 +13,6 @@ func (p *Payment) CreateUser(ctx context.Context, ip, phone, email string) error
 
 	err = proceedRequest(ctx, "POST", "/createUser", p)
 
-	err = p.checkErrors(err)
-
-	return err
+	return p.checkErrors(err)
 
 }
