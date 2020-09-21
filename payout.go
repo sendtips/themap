@@ -28,11 +28,8 @@ func (p *Payment) Payout(ctx context.Context, amount int, orderid, card string, 
 	p.CustomParamsRDY = PayoutParams{OriginalOrderID: orderid}
 
 	err = proceedRequest(ctx, "POST", "/Payout", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 

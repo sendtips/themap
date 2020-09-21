@@ -13,11 +13,8 @@ func (p *Payment) GooglePay(ctx context.Context, amount int, token []byte) error
 	p.Amount = amount
 
 	err = proceedRequest(ctx, "POST", "/Pay", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 

@@ -12,11 +12,8 @@ func (p *Payment) CreateUser(ctx context.Context, ip, phone, email string) error
 	p.User = User{IP: ip, Phone: phone, Email: email}
 
 	err = proceedRequest(ctx, "POST", "/createUser", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 

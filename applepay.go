@@ -13,11 +13,8 @@ func (p *Payment) ApplePay(ctx context.Context, amount int, token []byte) error 
 	p.Amount = amount
 
 	err = proceedRequest(ctx, "POST", "/Pay", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 
@@ -34,11 +31,8 @@ func (p *Payment) ApplePayBlock(ctx context.Context, amount int, token []byte) e
 	p.Amount = amount
 
 	err = proceedRequest(ctx, "POST", "/Block", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 

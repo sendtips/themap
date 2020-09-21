@@ -11,11 +11,8 @@ func (p *Payment) Init(ctx context.Context, amount int) error {
 	p.Amount = amount
 
 	err = proceedRequest(ctx, "POST", "/Init", p)
-	if err != nil {
-		return err
-	}
 
-	err = p.checkErrors()
+	err = p.checkErrors(err)
 
 	return err
 
