@@ -42,14 +42,14 @@ func TestProceedRequest(t *testing.T) {
 	}
 
 	// ErrBadStatusReply
-	serv_errcode := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	servErrcode := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Something wrong", http.StatusInternalServerError)
 	}))
-	serv_errcode.Start()
-	defer serv_errcode.Close()
+	servErrcode.Start()
+	defer servErrcode.Close()
 
 	// Route request to mocked http server
-	APILink = serv_errcode.URL
+	APILink = servErrcode.URL
 
 	err = proceedRequest(context.Background(), "POST", "/Init", payload)
 
