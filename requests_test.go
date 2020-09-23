@@ -25,15 +25,15 @@ func TestProceedRequest(t *testing.T) {
 	//listner, _ := net.Listen("tcp", APILink+":8060")
 
 	// ErrBadJSON
-	serv_badjson := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	servBadjson := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "{{{{bad json")
 	}))
 	//serv_badjson.Listener = listner
-	serv_badjson.Start()
-	defer serv_badjson.Close()
+	servBadjson.Start()
+	defer servBadjson.Close()
 
 	// Route request to mocked http server
-	APILink = serv_badjson.URL
+	APILink = servBadjson.URL
 
 	err = proceedRequest(context.Background(), "POST", "/Init", payload)
 
