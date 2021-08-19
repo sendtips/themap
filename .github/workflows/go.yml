@@ -39,3 +39,8 @@ jobs:
       with:
         file: ./coverage.txt
         token: ${{ secrets.CODECOV_TOKEN }}
+    
+    - name: Run FOSSA scan and upload build data
+      uses: fossa-contrib/fossa-action@v1
+      with:
+        fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
