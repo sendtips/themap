@@ -39,12 +39,14 @@ jobs:
       with:
         file: ./coverage.txt
         token: ${{ secrets.CODECOV_TOKEN }}
-    
-    - name: Add GOPATH to GITHUB_ENV
-      run: echo "GOPATH=$(go env GOPATH)" >>"$GITHUB_ENV"
-    - name: Add GOPATH to GITHUB_PATH
-      run: echo "$GOPATH/bin" >>"$GITHUB_PATH"
-    - name: Run FOSSA scan and upload build data
-      uses: fossa-contrib/fossa-action@v1
-      with:
-        fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
+
+# WARN This thing didnt work yet - AUG20, 2021  
+#     - name: Add GOPATH to GITHUB_ENV
+#       run: echo "GOPATH=$(go env GOPATH)" >>"$GITHUB_ENV"
+#     - name: Add GOPATH to GITHUB_PATH
+#       run: echo "$GOPATH/bin" >>"$GITHUB_PATH"
+#     - name: Run FOSSA scan and upload build data
+#       uses: fossa-contrib/fossa-action@v1
+#       with:
+#         fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
+#         skip-test: true
