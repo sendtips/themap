@@ -40,6 +40,10 @@ jobs:
         file: ./coverage.txt
         token: ${{ secrets.CODECOV_TOKEN }}
     
+    - name: Add GOPATH to GITHUB_ENV
+      run: echo "GOPATH=$(go env GOPATH)" >>"$GITHUB_ENV"
+    - name: Add GOPATH to GITHUB_PATH
+      run: echo "$GOPATH/bin" >>"$GITHUB_PATH"
     - name: Run FOSSA scan and upload build data
       uses: fossa-contrib/fossa-action@v1
       with:
