@@ -6,6 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/sendtips/themap)](https://goreportcard.com/report/github.com/sendtips/themap)
 [![Sourcegraph](https://sourcegraph.com/github.com/sendtips/themap/-/badge.svg)](https://sourcegraph.com/github.com/sendtips/themap?badge)
 [![sendtips](https://img.shields.io/badge/🍩_Sendtips-@awsom82-black?labelColor=3298dc)](https://sendtips.ru/pay/E2ZfzjVE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsendtips%2Fthemap.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsendtips%2Fthemap?ref=badge_shield)
 
 
 A Go library to work with [TheMAP](https://doc.mapcard.pro/).
@@ -46,3 +47,7 @@ func main() {
 	fmt.Printf("%s", pay.SessionGUID) // TheMAP payment session identifier
 }
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsendtips%2Fthemap.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsendtips%2Fthemap?ref=badge_large)
